@@ -9,11 +9,12 @@ pipeline {
 
     stages {
         stage('Clone Repository') {
-            steps {
-                echo '📥 Cloning repository...'
-                git 'https://github.com/sreenitha-1967/subscription-tracker1.git'
-            }
-        }
+    steps {
+        echo '📥 Cloning repository (main branch)...'
+        git branch: 'main', url: 'https://github.com/sreenitha-1967/subscription-tracker1.git'
+    }
+}
+
 
         stage('Build Docker Image') {
             steps {
