@@ -1,0 +1,6 @@
+<h2>Available Plans</h2>
+<ul>
+  {% for plan in plans %}
+    <li>{{ plan.name }} - {{ plan.price }}</li>
+  {% endfor %}
+</ul>

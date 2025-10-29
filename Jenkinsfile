@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'nagireddy7/subscription-tracker'
         DOCKER_USER = 'nagireddy7'
-        DOCKER_PASS = Sree2005# // or use env vars locally
+        DOCKER_PASS = 'Sree2005#' // or use env vars locally
     }
 
     stages {
