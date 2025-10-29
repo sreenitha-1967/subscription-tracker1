@@ -1,43 +1,23 @@
 pipeline {
     agent any
+
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-login')
         DOCKER_IMAGE = 'nagireddy7/subscription-tracker'
+        DOCKER_USER = 'nagireddy7'
+        DOCKER_PASS = Sree2005# // or use env vars locally
     }
+
     stages {
-        stage('Clone Repository') {
+        stage('Build and Push') {
             steps {
-                git 'https://github.com/your-username/subscription-tracker.git'
+                script {
+                    sh """
+                        docker build -t $DOCKER_IMAGE .
+                        echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
+                        docker push $DOCKER_IMAGE
+                    """
+                }
             }
-        }
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .'
-            }
-        }
-        stage('Push to DockerHub') {
-            steps {
-                sh '''
-                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                docker push $DOCKER_IMAGE:$BUILD_NUMBER
-                docker tag $DOCKER_IMAGE:$BUILD_NUMBER $DOCKER_IMAGE:latest
-                docker push $DOCKER_IMAGE:latest
-                '''
-            }
-        }
-        stage('Deploy to Kubernetes') {
-            steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
-            }
-        }
-    }
-    post {
-        success {
-            echo '✅ Deployment Successful!'
-        }
-        failure {
-            echo '❌ Build Failed!'
         }
     }
 }
