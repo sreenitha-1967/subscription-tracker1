@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-tracker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: subscription-tracker
+  template:
+    metadata:
+      labels:
+        app: subscription-tracker
+    spec:
+      containers:
+      - name: subscription-tracker
+        image: <your-dockerhub-username>/subscription-tracker:latest
+        ports:
+        - containerPort: 5000

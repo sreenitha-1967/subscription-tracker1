@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary - Subscription Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; text-align:center; }
+        .summary-box { display:inline-block; background:#f0f0f0; padding:30px; border-radius:10px; }
+        a { text-decoration:none; color:white; background:#007BFF; padding:10px 20px; border-radius:5px; }
+        a:hover { background:#0056b3; }
+    </style>
+</head>
+<body>
+    <div class="summary-box">
+        <h2>📊 Subscription Summary</h2>
+        <p><b>Subscription:</b> {{ name }}</p>
+        <p><b>Monthly Cost:</b> ₹{{ monthly_cost }}</p>
+        <p><b>Total {{ duration.title() }} Cost:</b> ₹{{ total }}</p>
+        <br>
+        <a href="/">Add Another</a>
+    </div>
+</body>
+</html>
