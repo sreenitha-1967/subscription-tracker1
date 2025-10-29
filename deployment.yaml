@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: subscription-tracker
-        image: <your-dockerhub-username>/subscription-tracker:latest
+        image: nagireddy7/subscription-tracker:latest
         ports:
         - containerPort: 5000
